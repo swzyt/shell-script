@@ -10,7 +10,7 @@ function log() {
     echo `date "+%Y-%m-%d %H:%M:%S":` $1 $2 $3
 }
 
-log "卸载mysql"
+log "卸载docker"
 
 log "删除系统已安装的docker及其依赖命令"
 yum remove docker  docker-common docker-selinux docker-engine
@@ -28,6 +28,9 @@ yum makecache fast
 
 log "安装docker"
 yum install docker-ce
+
+log "docker info"
+docker info
 
 log "启动并加入开机启动"
 systemctl start docker
