@@ -54,8 +54,14 @@ log "设置开机自启"
 systemctl enable mysqld
 systemctl daemon-reload
 
-log "启动防火墙"
-systemctl start firewalld
+if ps -ef | grep firewalld | egrep -v grep >/dev/null; 
+then     
+    log "防火墙已启动"; 
+else     
+    log "防火墙未启动，即将启动";     
+    systemctl start firewalld; 
+fi
+
 log "开启mysql监听的3306端口"
 firewall-cmd --zone=public --add-port=3306/tcp --permanent
 log "重载防火墙"
