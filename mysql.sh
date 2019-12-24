@@ -14,9 +14,9 @@ function log() {
 PASSWORD="P@ssW0rd"
 
 log "卸载mysql"
-log "检测系统是否自带安装mysql"
+log "检测系统是否已安装mysql"
 yum list installed | grep mysql
-log "删除系统自带的mysql及其依赖命令"
+log "删除系统已安装的mysql及其依赖命令"
 yum -y remove mysql mysql-server mysql-libs mysql-server
 
 log "开始安装"
@@ -35,9 +35,9 @@ systemctl status mysqld.service
 log "查询 mysql 初始密码"
 grep "password" /var/log/mysqld.log
 log "自动进入 mysql 服务，设置自定义密码"
-log "输入 mysql 默认密码: "
+log "输入 mysql 初始密码: "
 read -p "(Default password: root):" mysqlrootpwd
-log "默认密码: " ${mysqlrootpwd}
+log "初始密码: " ${mysqlrootpwd}
 log "重置密码为: " ${PASSWORD} "。并开启远程登录"
 # mysql安全策略 交换模式下，使用 --connect-expired-password 这个选项，否则会报错
 # --connect-expired-password
