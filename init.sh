@@ -1,3 +1,3 @@
 cd / && mkdir app && cd /app
-mkdir shell && mkdir tools
+mkdir tools
 cd /app
